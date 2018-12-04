@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Couter extends Component {
     state = {
         count : 0,
-        tags: ['tage1','tage2','tage3']
     };
 
     /*constructor(){
@@ -12,7 +11,7 @@ class Couter extends Component {
     }*/
 
     handleTncrement = () =>{
-        console.log('Increment Clicked', this);
+        this.setState({ count : this.state.count + 1 })
     }
 
     render() {
