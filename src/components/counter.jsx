@@ -2,23 +2,40 @@ import React, { Component } from 'react';
 
 class Couter extends Component {
     state = {
-        count : 1,
-        tags: []
+        count : 0,
+        tags: ['tage1','tage2','tage3']
     };
 
-    renderTags(){
-        if(this.state.tags.length === 0) return <p>There are no tags!</p>;
-        return <ul> {this.state.tags.map(tag => <li key={tag}>{tag}</li>)} </ul>
-    }
+    /*constructor(){
+        super();
+        this.handleTncrement = this.handleTncrement.bind(this);
+    }*/
 
+    handleTncrement = () =>{
+        console.log('Increment Clicked', this);
+    }
 
     render() {
         return(
             <div>
-                {this.state.tags.length === 0 && 'Please Create a new tag!'}
-                {this.renderTags()}
+                <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+                <button
+                    onClick={this.handleTncrement}
+                    className="btn btn-secondary btn-sm"
+                >
+                    Increment
+                </button>
             </div>
         );
+    }
+    getBadgeClasses(){
+        let Classes = "badge m-2 badge-";
+        Classes += (this.state.count === 0) ? "warning" : "primary";
+        return Classes;
+    }
+    formatCount(){
+        const { count } = this.state;
+        return count === 0 ? 'Zero' : count;
     }
 
 }
